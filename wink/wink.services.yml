@@ -1,0 +1,9 @@
+services:
+
+  wink.api_service:
+    class: Drupal\wink\Service\WinkApiService
+    arguments:
+      - '@http_client'
+      - '@config.factory'
+      - '@cache.default'
+      - '@logger.factory'

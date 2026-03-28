@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * @file
+ * Wink Travel module — integrates Wink web components into Drupal pages.
+ *
+ * Attaches the correct CDN library for the configured environment and injects
+ * the <wink-app-loader> custom element into the page footer once per request.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Render\Markup;
+
+/**
+ * Implements hook_page_attachments().
+ *
+ * Attaches the Wink CDN library (JS + CSS) that matches the configured
+ * environment on every page.  If no Client ID is configured the library
+ * is still attached so that block previews in the Block UI render correctly.
+ */
+function wink_page_attachments(array &$attachments): void {
+  $config = \Drupal::config('wink.settings');
+  $environment = $config->get('environment') ?: 'production';
+
+  $library_map = [
+    'production'  => 'wink/wink.elements',
+    'staging'     => 'wink/wink.elements.staging',
+    'development' => 'wink/wink.elements.development',
+  ];
+
+  $library = $library_map[$environment] ?? $library_map['production'];
+  $attachments['#attached']['library'][] = $library;
+}
+
+/**
+ * Implements hook_page_bottom().
+ *
+ * Renders the <wink-app-loader> custom element once at the bottom of every
+ * page.  The element boots the Wink runtime and must appear in the DOM before
+ * any other Wink components are used.
+ */
+function wink_page_bottom(array &$page_bottom): void {
+  $config = \Drupal::config('wink.settings');
+  $client_id = $config->get('client_id') ?: '';
+
+  // Only inject the loader when a Client ID has been configured.
+  if ($client_id === '') {
+    return;
+  }
+
+  // The client_id attribute value is rendered as plain text — not as markup —
+  // so no XSS risk; we still run it through check_plain defensively.
+  $safe_client_id = htmlspecialchars($client_id, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+
+  $page_bottom['wink_app_loader'] = [
+    '#type'   => 'markup',
+    '#markup' => Markup::create(
+      '<wink-app-loader client-id="' . $safe_client_id . '"></wink-app-loader>'
+    ),
+    '#weight' => 100,
+  ];
+}
+
+/**
+ * Implements hook_theme().
+ *
+ * Registers the Twig template used by WinkContentBlock.
+ */
+function wink_theme(): array {
+  return [
+    'wink_content_block' => [
+      'variables' => [
+        'layout' => NULL,
+        'id'     => NULL,
+      ],
+      'template'  => 'wink-content-block',
+    ],
+  ];
+}

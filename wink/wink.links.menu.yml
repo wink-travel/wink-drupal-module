@@ -1,0 +1,6 @@
+wink.settings:
+  title: 'Wink Travel'
+  description: 'Configure Wink Travel Client ID, environment, and OAuth2 credentials.'
+  route_name: wink.settings
+  parent: system.admin_config_services
+  weight: 10

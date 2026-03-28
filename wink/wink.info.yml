@@ -1,0 +1,9 @@
+name: Wink Travel
+type: module
+description: 'Integrates Wink Travel web components (elements.wink.travel) into Drupal sites. Provides configurable blocks for search, booking, account management, and more.'
+core_version_requirement: ^10 || ^11
+package: Wink Travel
+configure: wink.settings
+dependencies:
+  - drupal:block
+  - drupal:system

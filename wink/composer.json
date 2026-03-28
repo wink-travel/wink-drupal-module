@@ -1,0 +1,44 @@
+{
+  "name": "drupal/wink",
+  "description": "Integrates Wink Travel web components (elements.wink.travel) into Drupal 10/11 sites.",
+  "type": "drupal-module",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://www.drupal.org/project/wink",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/wink",
+    "source": "https://git.drupalcode.org/project/wink"
+  },
+  "authors": [
+    {
+      "name": "Wink Travel",
+      "homepage": "https://wink.travel",
+      "role": "Maintainer"
+    }
+  ],
+  "require": {
+    "php": ">=8.1",
+    "drupal/core": "^10 || ^11"
+  },
+  "require-dev": {
+    "drupal/core-dev": "^10 || ^11"
+  },
+  "autoload": {
+    "psr-4": {
+      "Drupal\\wink\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Drupal\\Tests\\wink\\": "tests/src/"
+    }
+  },
+  "extra": {
+    "drupal": {
+      "version": "1.0.0",
+      "datestamp": "1711584000"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  }
+}

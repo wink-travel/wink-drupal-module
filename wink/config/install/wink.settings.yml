@@ -1,0 +1,12 @@
+# Wink Travel module default configuration.
+# All values here are overridden via admin/config/wink.
+
+# The OAuth2 Client ID issued by the Wink IAM service.
+client_id: ''
+
+# The target Wink environment.  Accepted values: production | staging | development
+environment: production
+
+# OAuth2 credentials used server-side to fetch layout lists for the content block.
+oauth2_client_id: ''
+oauth2_client_secret: ''

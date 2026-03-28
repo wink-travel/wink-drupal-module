@@ -1,0 +1,41 @@
+wink.elements:
+  version: 'external'
+  js:
+    https://elements.wink.travel/elements.js:
+      type: external
+      minified: true
+      attributes:
+        defer: true
+  css:
+    base:
+      https://elements.wink.travel/styles.css:
+        type: external
+        minified: true
+
+wink.elements.staging:
+  version: 'external'
+  js:
+    https://staging-elements.wink.travel/elements.js:
+      type: external
+      minified: true
+      attributes:
+        defer: true
+  css:
+    base:
+      https://staging-elements.wink.travel/styles.css:
+        type: external
+        minified: true
+
+wink.elements.development:
+  version: 'external'
+  js:
+    https://dev.traveliko.com:8011/elements.js:
+      type: external
+      minified: false
+      attributes:
+        defer: true
+  css:
+    base:
+      https://dev.traveliko.com:8011/styles.css:
+        type: external
+        minified: false

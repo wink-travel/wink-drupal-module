@@ -1,0 +1,4 @@
+administer wink:
+  title: 'Administer Wink Travel settings'
+  description: 'Configure Wink Travel Client ID, environment, and OAuth2 credentials.'
+  restrict access: true

@@ -1,0 +1,7 @@
+wink.settings:
+  path: '/admin/config/wink'
+  defaults:
+    _form: '\Drupal\wink\Form\WinkSettingsForm'
+    _title: 'Wink Travel Settings'
+  requirements:
+    _permission: 'administer wink'
